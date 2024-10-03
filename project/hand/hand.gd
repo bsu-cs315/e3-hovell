@@ -35,7 +35,7 @@ func _spawn_flashlight() -> void:
 	_flashlight_object = load("res://flashlight/flashlight.tscn").instantiate()
 	get_parent().add_child(_flashlight_object)
 	_flashlight_object.global_position = global_position
-	_flashlight_object.rotation.y = -70
+	_flashlight_object.global_rotation_degrees.y = -70
 
 
 func _throw_flashlight() -> void:
