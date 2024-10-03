@@ -20,16 +20,23 @@ glow_enabled = true
 
 [node name="WorldSun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+visible = false
 light_indirect_energy = 10.0
 light_volumetric_fog_energy = 10.0
 shadow_enabled = true
 sky_mode = 1
 
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.348572, -0.937282, 0, 0.937282, 0.348572, 1, 1.52366e-08, -4.09699e-08, -2.967, 1.43, 0)
+light_energy = 10.0
+light_size = 1.0
+spot_angle = 35.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kyqa6")
 
 [node name="Ghost" parent="." instance=ExtResource("1_5khvy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.095, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92732, 0, 0)
 
 [node name="Hand" parent="." instance=ExtResource("2_v455f")]
 

@@ -1,7 +1,7 @@
 class_name Hand
 extends Node3D
 
-var throw_strength : float = 10
+var throw_strength : float = 20
 var throw_y_direction : float = 0
 var min_throw_angle : int = -90
 var max_throw_angle : int = 90
@@ -18,12 +18,20 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("throw"):
 		_throw_flashlight()
-
+	elif Input.is_action_pressed("move_left"):
+		_flashlight_object.rotation_degrees.y += 1
+	elif Input.is_action_pressed("move_right"):
+		_flashlight_object.rotation_degrees.y -= 1
+	elif Input.is_action_pressed("move_up"):
+		_flashlight_object.rotation_degrees.x += 1
+	elif Input.is_action_pressed("move_down"):
+		_flashlight_object.rotation_degrees.x -= 1
 
 func _spawn_flashlight() -> void:
 	_flashlight_object = load("res://flashlight/flashlight.tscn").instantiate()
 	get_parent().add_child(_flashlight_object)
 	_flashlight_object.global_position = global_position
+	_flashlight_object.rotation.y = -90
 
 
 func _throw_flashlight() -> void:

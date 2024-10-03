@@ -4,6 +4,3 @@
 
 [node name="Hand" type="Node3D"]
 script = ExtResource("1_h6o5l")
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
-visible = false
