@@ -26,12 +26,16 @@ func _physics_process(_delta: float) -> void:
 		_flashlight_object.rotation_degrees.x += 1
 	elif Input.is_action_pressed("move_down"):
 		_flashlight_object.rotation_degrees.x -= 1
+		
+	if _flashlight_object.position.y < -5:
+		_flashlight_object.queue_free()
+		_spawn_flashlight()
 
 func _spawn_flashlight() -> void:
 	_flashlight_object = load("res://flashlight/flashlight.tscn").instantiate()
 	get_parent().add_child(_flashlight_object)
 	_flashlight_object.global_position = global_position
-	_flashlight_object.rotation.y = -90
+	_flashlight_object.rotation.y = -70
 
 
 func _throw_flashlight() -> void:
