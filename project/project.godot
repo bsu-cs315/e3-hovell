@@ -11,5 +11,16 @@ config_version=5
 [application]
 
 config/name="flashlight_fling"
+run/main_scene="res://title/title.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://flashlight/": "yellow",
+"res://ghost/": "yellow",
+"res://hand/": "yellow",
+"res://level/": "orange",
+"res://title/": "orange"
+}

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbyqxrr3ss2vf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ju4eu"]
+
+[node name="Ghost" type="RigidBody3D"]
+gravity_scale = 0.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ju4eu")
