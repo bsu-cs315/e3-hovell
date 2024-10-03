@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbyqxrr3ss2vf"]
+[gd_scene load_steps=3 format=3 uid="uid://bbyqxrr3ss2vf"]
+
+[ext_resource type="Script" path="res://ghost/ghost.gd" id="1_j8mox"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ju4eu"]
 
 [node name="Ghost" type="RigidBody3D"]
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 100
+script = ExtResource("1_j8mox")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_ju4eu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
