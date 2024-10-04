@@ -8,7 +8,6 @@ func _ready() -> void:
 	
 
 func spawn_ghost() -> void:
-	print ("spawn new ghost!")
 	_ghost_object = load("res://ghost/ghost.tscn").instantiate()
 	get_parent().add_child(_ghost_object)
 	var position_z = randf_range(-5, 5)
@@ -17,5 +16,4 @@ func spawn_ghost() -> void:
 
 
 func _on_ghost_entered() -> void:
-	
 	spawn_ghost()

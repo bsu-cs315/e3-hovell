@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dc3bvr2o0hynu"]
+[gd_scene load_steps=8 format=3 uid="uid://dc3bvr2o0hynu"]
 
+[ext_resource type="PackedScene" uid="uid://bbyqxrr3ss2vf" path="res://ghost/ghost.tscn" id="1_5khvy"]
 [ext_resource type="Script" path="res://level/level.gd" id="1_qhi5n"]
 [ext_resource type="PackedScene" uid="uid://c354qphmg5403" path="res://hand/hand.tscn" id="2_v455f"]
+[ext_resource type="PackedScene" uid="uid://crrkb8gb6fmdh" path="res://flashlight/flashlight.tscn" id="3_j1hrs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwvdu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -11,6 +13,7 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_xwvdu")
 
 [sub_resource type="Environment" id="Environment_kyqa6"]
+background_mode = 1
 sky = SubResource("Sky_kmdl4")
 tonemap_mode = 2
 glow_enabled = true
@@ -20,6 +23,7 @@ script = ExtResource("1_qhi5n")
 
 [node name="WorldSun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+visible = false
 light_indirect_energy = 10.0
 light_volumetric_fog_energy = 10.0
 shadow_enabled = true
@@ -33,7 +37,23 @@ spot_angle = 35.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kyqa6")
 
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.570714, -0.821149, 0, 0.821149, 0.570714, 1, 2.49467e-08, -3.58936e-08, -0.1, 1.481, 0)
+
 [node name="Hand" parent="." instance=ExtResource("2_v455f")]
 
-[node name="MainCamera" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0.385906, -0.922538, 0, 0.922538, 0.385906, 1, 1.68685e-08, -4.03254e-08, -5.396, 5.511, 0)
+[node name="Flashlight" parent="." instance=ExtResource("3_j1hrs")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
+
+[node name="Ghost" parent="." instance=ExtResource("1_5khvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+visible = false
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.02507, 9.085, 0, 0)
+size = Vector3(1, 10, 10)
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 4.21095, 4.2555, -5.7019, 0)
+size = Vector3(1, 10, 10)
