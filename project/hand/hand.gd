@@ -7,7 +7,12 @@ var min_throw_angle : int = -90
 var max_throw_angle : int = 90
 var _y_direction_power : int = 5
 var _x_offset : int = -10
-var _z_direction : int
+var _z_direction : float
+
+var _y_increment := 1
+var _z_increment := 0.5
+
+var game_lost := false
 
 @onready var _flashlight_object : Flashlight
 
@@ -16,22 +21,23 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("throw"):
-		_throw_flashlight()
-	elif Input.is_action_pressed("move_left"):
-		_flashlight_object.rotation_degrees.y += 1
-		_z_direction -= 1
-	elif Input.is_action_pressed("move_right"):
-		_flashlight_object.rotation_degrees.y -= 1
-		_z_direction += 1
-	elif Input.is_action_pressed("move_up"):
-		_flashlight_object.rotation_degrees.x += 1
-	elif Input.is_action_pressed("move_down"):
-		_flashlight_object.rotation_degrees.x -= 1
-		
-	if _flashlight_object.position.y < -5:
-		_flashlight_object.queue_free()
-		_spawn_flashlight()
+	if not game_lost:
+		if Input.is_action_just_pressed("throw"):
+			_throw_flashlight()
+		elif Input.is_action_pressed("move_left"):
+			_flashlight_object.rotation_degrees.y += _y_increment
+			_z_direction -= _z_increment
+		elif Input.is_action_pressed("move_right"):
+			_flashlight_object.rotation_degrees.y -= _y_increment
+			_z_direction += _z_increment
+		elif Input.is_action_pressed("move_up"):
+			_flashlight_object.rotation_degrees.x += _y_increment
+		elif Input.is_action_pressed("move_down"):
+			_flashlight_object.rotation_degrees.x -= _y_increment
+			
+		if _flashlight_object.position.y < -5:
+			_flashlight_object.queue_free()
+			_spawn_flashlight()
 
 
 func _spawn_flashlight() -> void:

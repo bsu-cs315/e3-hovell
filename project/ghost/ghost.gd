@@ -1,7 +1,7 @@
 class_name Ghost
 extends RigidBody3D
 
-signal ghost_hit
+signal ghost_hit (ghost_position : Vector3)
 
 var moving_left : bool
 
@@ -11,10 +11,9 @@ func _ready() -> void:
 		moving_left = false
 	else:
 		moving_left = true
-	
 
 func _on_body_entered(_body: Node) -> void:
-	ghost_hit.emit()
+	ghost_hit.emit(position)
 	$".".queue_free()
 	
 	
