@@ -54,6 +54,7 @@ func _on_ghost_entered(old_ghost_position : Vector3) -> void:
 		time_left.stop()
 		main_menu_button.show()
 		time_left_label.hide()
+		_ghost_object.queue_free()
 
 
 func _on_time_left_timeout() -> void:
@@ -61,6 +62,7 @@ func _on_time_left_timeout() -> void:
 	game_end_label.text = "You Lose!"
 	game_end_label.show()
 	main_menu_button.show()
+	_ghost_object.queue_free()
 
 
 func _on_main_menu_button_pressed() -> void:
