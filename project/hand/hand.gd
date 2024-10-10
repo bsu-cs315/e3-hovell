@@ -12,6 +12,9 @@ var _z_direction : float
 var _y_increment := 1
 var _z_increment := 0.5
 
+var _max_turn := 30
+var _min_turn := -30
+
 var game_lost := false
 
 @onready var _flashlight_object : Flashlight
@@ -24,15 +27,15 @@ func _physics_process(_delta: float) -> void:
 	if not game_lost:
 		if Input.is_action_just_pressed("throw"):
 			_throw_flashlight()
-		elif Input.is_action_pressed("move_left"):
+		elif Input.is_action_pressed("move_left") and _z_direction > _min_turn:
 			_flashlight_object.rotation_degrees.y += _y_increment
 			_z_direction -= _z_increment
-		elif Input.is_action_pressed("move_right"):
+		elif Input.is_action_pressed("move_right") and _z_direction < _max_turn:
 			_flashlight_object.rotation_degrees.y -= _y_increment
 			_z_direction += _z_increment
-		elif Input.is_action_pressed("move_up"):
+		elif Input.is_action_pressed("move_up") and _flashlight_object.rotation_degrees.x < _max_turn:
 			_flashlight_object.rotation_degrees.x += _y_increment
-		elif Input.is_action_pressed("move_down"):
+		elif Input.is_action_pressed("move_down") and _flashlight_object.rotation_degrees.x > _min_turn:
 			_flashlight_object.rotation_degrees.x -= _y_increment
 			
 		if _flashlight_object.position.y < -5:
